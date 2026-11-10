@@ -80,7 +80,14 @@ async function gateFetch(input, init = {}) {
   // A call already addressed to the gate (/whoami, /app) goes as it is:
   // rerouting it too doubled the path, and the gate answered "not forwarded"
   // to the founder's first sign-in (10 Nov) - after admitting him.
-  const url = raw.startsWith(`${GATE}/`) || !raw.startsWith(`${SUPABASE_URL}/`) ? raw : GATE + raw.slice(SUPABASE_URL.length);
+  // A FUNCTION call goes as /fn/<name>: Supabase's router drops a second
+  // /functions/v1/... from the gate's own path, and the Web tab's first call
+  // reached the gate with its destination gone (10 Nov).
+  let url = raw;
+  if (!raw.startsWith(`${GATE}/`) && raw.startsWith(`${SUPABASE_URL}/`)) {
+    const path = raw.slice(SUPABASE_URL.length);
+    url = GATE + (path.startsWith('/functions/v1/') ? '/fn/' + path.slice('/functions/v1/'.length) : path);
+  }
   const headers = new Headers(init.headers ?? (input instanceof Request ? input.headers : undefined));
   headers.set('Authorization', `Bearer ${await accessToken()}`);
   headers.set('apikey', ANON);
