@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="referrer" content="no-referrer" />
+<title>SpA Console</title>
+<!--
+  THE CONSOLE'S FRONT DOOR (launch-audit 7.281, 10 Nov 2026).
+
+  This is the only public part of the Console: published to spectall.com/console/
+  by admin/console-build.py, it holds the project address and the PUBLIC app key
+  (the one inside every app bundle) and nothing else. It signs the founder in -
+  password, then a six-digit authenticator code - and only then fetches the
+  Console itself from the admin-gate function, which refuses anyone else. Every
+  Console request then travels through that gate, where the service key lives.
+
+  __SUPABASE_URL__ and __ANON_KEY__ are written in by console-build.py; this
+  file is never served as it stands.
+-->
+<style id="gateStyle">
+  #gate { font-family: system-ui, 'Segoe UI', Arial, sans-serif; background: #D6DCEB; color: #10214B;
+          min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 16px; margin: 0; }
+  #gate .box { background: #fff; border-radius: 14px; padding: 24px; width: 100%; max-width: 360px;
+               box-shadow: 0 1px 6px rgba(0,35,102,.15); }
+  #gate h1 { color: #002366; font-size: 20px; margin: 0 0 4px; }
+  #gate p { color: #5A6788; font-size: 14px; margin: 0 0 16px; line-height: 1.4; }
+  #gate label { display: block; font-size: 13px; color: #5A6788; margin: 12px 0 4px; }
+  #gate input { width: 100%; box-sizing: border-box; font-size: 17px; padding: 10px 12px; border: 1px solid #B8C2DA;
+                border-radius: 8px; color: #10214B; caret-color: #10214B; background: #fff; }
+  #gate input.code { letter-spacing: 6px; text-align: center; font-size: 22px; }
+  #gate button { width: 100%; margin-top: 18px; font-size: 16px; padding: 11px; border: 0; border-radius: 8px;
+                 background: #002366; color: #fff; cursor: pointer; }
+  #gate button:disabled { opacity: .6; cursor: default; }
+  #gate .link { background: none; color: #29387F; margin-top: 10px; padding: 4px; font-size: 14px; }
+  #gate .err { color: #B81C2F; font-size: 14px; margin-top: 12px; min-height: 1em; }
+  #gate .qr { display: block; margin: 8px auto; width: 200px; height: 200px; background: #fff; }
+  #gate code { display: block; word-break: break-all; font-size: 13px; background: #EEF1F8; padding: 8px; border-radius: 6px; }
+  body { margin: 0; }
+</style>
+</head>
+<body>
+<div id="gate"><div class="box"><h1>SpA Console</h1><p>Loading...</p></div></div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.110.8';
+
+const SUPABASE_URL = 'https://oqftjahepualmvgqzdjb.supabase.co';
+const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xZnRqYWhlcHVhbG12Z3F6ZGpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3OTgzMTcsImV4cCI6MjEwMDM3NDMxN30.ad7Q_e0fpdZOAVeF7USjKubZryC1fQqsjZtoiiFnehU';
+const GATE = `${SUPABASE_URL}/functions/v1/admin-gate`;
+// On the PC the Console's code comes from the local build folder, so an edit
+// can be tried before it is published; everywhere else only the gate has it.
+const LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+
+const auth = createClient(SUPABASE_URL, ANON, { auth: { storageKey: 'spa-console-auth', detectSessionInUrl: false } });
+const gate = document.getElementById('gate');
+const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
+const show = (html) => { gate.innerHTML = `<div class="box"><h1>SpA Console</h1>${html}</div>`; };
+const fail = (msg) => { const e = gate.querySelector('.err'); if (e) e.textContent = msg; };
+const busy = (form, on) => form.querySelectorAll('button, input').forEach((x) => { x.disabled = on; });
+
+async function accessToken() {
+  const { data } = await auth.auth.getSession();
+  return data.session?.access_token ?? '';
+}
+
+async function signOut() {
+  await auth.auth.signOut().catch(() => {});
+  location.reload();
+}
+
+// Every request the Console makes, rerouted: the same Supabase path, asked of
+// the gate, carrying the founder's own session instead of any key of ours.
+async function gateFetch(input, init = {}) {
+  const raw = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
+  const url = raw.startsWith(`${SUPABASE_URL}/`) ? GATE + raw.slice(SUPABASE_URL.length) : raw;
+  const headers = new Headers(init.headers ?? (input instanceof Request ? input.headers : undefined));
+  headers.set('Authorization', `Bearer ${await accessToken()}`);
+  headers.set('apikey', ANON);
+  const res = await fetch(url, { ...init, headers });
+  if (res.status === 401) setTimeout(signOut, 1500);
+  return res;
+}
+
+// --------------------------------------------------------------- the steps
+function askPassword(msg = '') {
+  show(`<p>Sign in</p><form id="f">
+    <label for="em">E-mail</label><input id="em" type="email" autocomplete="username" required>
+    <label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" required>
+    <button>Continue</button><div class="err">${esc(msg)}</div></form>`);
+  const f = document.getElementById('f');
+  f.onsubmit = async (e) => {
+    e.preventDefault(); busy(f, true);
+    const { error } = await auth.auth.signInWithPassword({ email: f.em.value.trim(), password: f.pw.value });
+    if (error) { busy(f, false); return fail(error.message); }
+    next();
+  };
+}
+
+function codeForm(intro, onCode) {
+  show(`${intro}<form id="f"><label for="cd">Six-digit code from your authenticator app</label>
+    <input id="cd" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required>
+    <button>Verify</button><button type="button" class="link" id="out">Sign out</button><div class="err"></div></form>`);
+  const f = document.getElementById('f');
+  document.getElementById('out').onclick = signOut;
+  f.cd.focus();
+  f.onsubmit = async (e) => {
+    e.preventDefault(); busy(f, true);
+    const err = await onCode(f.cd.value.trim());
+    if (err) { busy(f, false); f.cd.value = ''; return fail(err); }
+    next();
+  };
+}
+
+async function askCode(factorId) {
+  codeForm('<p>Enter the code your authenticator app shows for SpA Console.</p>', async (code) => {
+    const { error } = await auth.auth.mfa.challengeAndVerify({ factorId, code });
+    return error?.message;
+  });
+}
+
+// First sign-in only: there is no authenticator yet, so one is set up now.
+// An earlier, abandoned setup is cleared first - Auth refuses a second one
+// under the same name.
+async function enrol() {
+  const { data: list } = await auth.auth.mfa.listFactors();
+  for (const f of list?.all ?? []) if (f.status !== 'verified') await auth.auth.mfa.unenroll({ factorId: f.id });
+  const { data, error } = await auth.auth.mfa.enroll({ factorType: 'totp', friendlyName: 'SpA Console', issuer: 'SpA Console' });
+  if (error) return show(`<p class="err">${esc(error.message)}</p>`);
+  codeForm(`<p>One-time setup: scan this with your authenticator app (Google Authenticator, Microsoft Authenticator, 1Password...), then type the code it shows.</p>
+    <img class="qr" alt="QR code" src="${esc(data.totp.qr_code)}">
+    <p>On this phone? Add it by hand with this key:</p><code>${esc(data.totp.secret)}</code>`,
+  async (code) => {
+    const { error: e } = await auth.auth.mfa.challengeAndVerify({ factorId: data.id, code });
+    return e?.message;
+  });
+}
+
+async function next() {
+  const { data: s } = await auth.auth.getSession();
+  if (!s.session) return askPassword();
+  const { data: aal, error } = await auth.auth.mfa.getAuthenticatorAssuranceLevel();
+  if (error) return askPassword(error.message);
+  if (aal.currentLevel !== 'aal2') {
+    if (aal.nextLevel !== 'aal2') return enrol();
+    const { data: list } = await auth.auth.mfa.listFactors();
+    const factor = list?.totp?.[0];
+    return factor ? askCode(factor.id) : enrol();
+  }
+  // Signed in with the second factor: does the gate agree this is the Console's login?
+  const who = await gateFetch(`${GATE}/whoami`);
+  if (!who.ok) {
+    const body = await who.json().catch(() => ({}));
+    show(`<p class="err">${esc(body.error ?? `HTTP ${who.status}`)}</p><form><button type="button" id="out">Sign out</button></form>`);
+    document.getElementById('out').onclick = signOut;
+    return;
+  }
+  boot();
+}
+
+// ------------------------------------------------------------ the Console
+async function boot() {
+  show('<p>Opening the Console...</p>');
+  const res = LOCAL ? await fetch('./app.html', { cache: 'no-store' }) : await gateFetch(`${GATE}/app`);
+  if (!res.ok) return show(`<p class="err">Could not load the Console (HTTP ${res.status})</p>`);
+  const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+
+  const db = createClient(SUPABASE_URL, ANON, {
+    global: { fetch: gateFetch },
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false, storageKey: 'spa-console-db' },
+  });
+  window.SPA_CONSOLE = { SUPABASE_URL, db, gateFetch, signOut };
+
+  document.title = doc.title || document.title;
+  document.getElementById('gateStyle').remove();
+  doc.head.querySelectorAll('style').forEach((st) => document.head.appendChild(st.cloneNode(true)));
+  const code = [...doc.querySelectorAll('script[type="module"]')].map((x) => x.textContent).join('\n');
+  doc.body.querySelectorAll('script').forEach((x) => x.remove());
+  document.body.innerHTML = doc.body.innerHTML;
+  await import(URL.createObjectURL(new Blob([code], { type: 'text/javascript' })));
+}
+
+next();
+</script>
+</body>
+</html>
