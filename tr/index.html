@@ -4,7 +4,7 @@
 <meta name="description" content="Misyonumuz, tasarrufu teşvik ederek ve finansal okuryazarlığın gelişimine katkıda bulunarak, 'finansal özgürlük ve esenlik' kazanımını kolaylaştırmaktır.">
 <meta property="og:title" content="SpectAll"><meta property="og:description" content="Misyonumuz, tasarrufu teşvik ederek ve finansal okuryazarlığın gelişimine katkıda bulunarak, 'finansal özgürlük ve esenlik' kazanımını kolaylaştırmaktır.">
 <meta property="og:image" content="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/og.tr.jpg?v=1790108261173">
-<link rel="canonical" href="https://spectall.com/tr/"><link rel="alternate" hreflang="en" href="https://spectall.com/">
+<link rel="canonical" href="https://spectall.com/tr/"><link rel="alternate" hreflang="en" href="https://spectall.com/"><link rel="alternate" hreflang="tr" href="https://spectall.com/tr/"><link rel="alternate" hreflang="de" href="https://spectall.com/de/"><link rel="alternate" hreflang="fr" href="https://spectall.com/fr/"><link rel="alternate" hreflang="es" href="https://spectall.com/es/"><link rel="alternate" hreflang="pt" href="https://spectall.com/pt/"><link rel="alternate" hreflang="it" href="https://spectall.com/it/"><link rel="alternate" hreflang="x-default" href="https://spectall.com/">
 <link rel="icon" href="../assets/icon.png"><link rel="apple-touch-icon" href="../assets/icon.png">
 <style>
 :root{--navy:#0B2461;--navy2:#143A8C;--ink:#12213F;--muted:#5A6788;--light:#F3F5FA;--paper:#FFFFFF;--onnavy:#E8ECF7;--onnavy2:#AFC0E8}
@@ -86,13 +86,19 @@ a{color:inherit}img{max-width:100%;height:auto;display:block}
   .sec .txt{font-size:22px}.coda{font-size:22px}.lead{font-size:19px}.band{font-size:15px}
   .bar{padding:10px 14px;gap:12px;border-radius:14px}.bar .cta{font-size:14px;text-align:left}.bar .badges{gap:8px}.bar .badges img{height:36px}
 }
+/* SEVEN LANGUAGE LINKS ON A PHONE (25 Nov 2026): the separators go and the links close up, so the logo and
+   EN TR DE FR ES PT IT share a 360px header without wrapping. */
+@media (max-width:520px){.top img{height:22px}.lang span{display:none}.lang a{padding:6px 4px;font-size:13px;letter-spacing:0}}
 </style></head><body>
-<script>(function(){try{var c=localStorage.getItem('lang');var here='tr';if(c&&c!==here){location.replace(c==='tr'?'./':'../');return}if(!c&&here==='en'&&/^tr/i.test(navigator.language||'')){localStorage.setItem('lang','tr');location.replace('tr/')}}catch(e){}})();</script>
+<script>(function(){try{var L=["en","tr","de","fr","es","pt","it"],here='tr',up='../';
+function go(l){location.replace((up+(l==='en'?'':l+'/'))||'./')}
+var c=localStorage.getItem('lang');if(L.indexOf(c)<0)c=null;if(c&&c!==here){go(c);return}
+if(!c&&here==='en'){var n=(navigator.language||'').toLowerCase().slice(0,2);if(n!=='en'&&L.indexOf(n)>=0){localStorage.setItem('lang',n);go(n)}}}catch(e){}})();</script>
 <header class="top"><div class="wrap"><a href="./"><img src="../assets/logo.png" alt="SpectAll"></a>
-<nav class="lang"><a href="../" class="" hreflang="en" onclick="try{localStorage.setItem('lang','en')}catch(e){}">EN</a><span>|</span><a href="./" class="on" hreflang="tr" onclick="try{localStorage.setItem('lang','tr')}catch(e){}">TR</a></nav></div></header>
+<nav class="lang"><a href="../" class="" hreflang="en" onclick="try{localStorage.setItem('lang','en')}catch(e){}">EN</a><span>|</span><a href="./" class="on" hreflang="tr" onclick="try{localStorage.setItem('lang','tr')}catch(e){}">TR</a><span>|</span><a href="../de/" class="" hreflang="de" onclick="try{localStorage.setItem('lang','de')}catch(e){}">DE</a><span>|</span><a href="../fr/" class="" hreflang="fr" onclick="try{localStorage.setItem('lang','fr')}catch(e){}">FR</a><span>|</span><a href="../es/" class="" hreflang="es" onclick="try{localStorage.setItem('lang','es')}catch(e){}">ES</a><span>|</span><a href="../pt/" class="" hreflang="pt" onclick="try{localStorage.setItem('lang','pt')}catch(e){}">PT</a><span>|</span><a href="../it/" class="" hreflang="it" onclick="try{localStorage.setItem('lang','it')}catch(e){}">IT</a></nav></div></header>
 <section class="hero"><div class="wrap"><div class="txt"><img class="logo" src="../assets/logo.png" alt="SpectAll">
 <h1>Sahip olduğun her şeyin<br>değer, değişim ve kâr/zararı<br>her an cebinde!</h1>
-<div class="badges"><a href="https://apps.apple.com/app/id6796391184" target="_blank" rel="noopener"><img src="../assets/appstore-tr.png" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=com.spectall.app" target="_blank" rel="noopener"><img src="../assets/googleplay-tr.png" alt="Google Play"></a></div></div>
+<div class="badges"><a href="https://apps.apple.com/app/id6796391184" target="_blank" rel="noopener"><img src="../assets/badges/appstore-tr.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=com.spectall.app" target="_blank" rel="noopener"><img src="../assets/badges/googleplay-tr.png" alt="Google Play"></a></div></div>
 <div class="img pair"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/1b.tr.webp?v=1795585834973" alt=""><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/1f.tr.webp?v=1795585840240" alt=""></div></div></section>
 <div class="dock">
 <section class="sec pair"><div class="wrap"><div class="txt">180 binden fazla global varlığın<br>fiyat, değişim ve<br>'En Çok Kazandıranlar'ı</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/2b.tr.webp?v=1795585845255" alt="" loading="lazy"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/2f.tr.webp?v=1795585849772" alt="" loading="lazy"></div></div></section>
@@ -103,7 +109,7 @@ a{color:inherit}img{max-width:100%;height:auto;display:block}
 <section class="sec flip pair"><div class="wrap"><div class="txt">tamamen anonim<br>(kişisel veri paylaşmadan)<br>Yüz/Parmak İzi Tanıma</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/7b.tr.webp?v=1795585889465" alt="" loading="lazy"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/7f.tr.webp?v=1795585893783" alt="" loading="lazy"></div></div></section>
 <section class="sec pair"><div class="wrap"><div class="txt">30 gün<br>ücretsiz dene!</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/8b.tr.webp?v=1795585898337" alt="" loading="lazy"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/8f.tr.webp?v=1795585900488" alt="" loading="lazy"></div></div></section>
 <section class="band"><div class="wrap">Kayıt (hesap/üyelik), giriş, şifre yoktur ve kişisel veri (ad, soyad, cinsiyet, yaş vb.) toplanmaz; 'yatırım tavsiyesi/danışmanlığı' yahut herhangi bir varlığa ilişkin saklama, al/sat emri/işlemi veya parasal herhangi bir hareket/işlem söz konusu değildir.</div></section>
-<div class="bar" aria-hidden="true"><div class="cta">30 gün <br class="nb">ücretsiz dene!</div><div class="badges"><a href="https://apps.apple.com/app/id6796391184" target="_blank" rel="noopener"><img src="../assets/appstore-tr.png" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=com.spectall.app" target="_blank" rel="noopener"><img src="../assets/googleplay-tr.png" alt="Google Play"></a></div></div>
+<div class="bar" aria-hidden="true"><div class="cta">30 gün <br class="nb">ücretsiz dene!</div><div class="badges"><a href="https://apps.apple.com/app/id6796391184" target="_blank" rel="noopener"><img src="../assets/badges/appstore-tr.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=com.spectall.app" target="_blank" rel="noopener"><img src="../assets/badges/googleplay-tr.png" alt="Google Play"></a></div></div>
 </div>
 <section class="support"><div class="wrap"><form class="card" id="sf">
 <input name="email" type="email" placeholder="E-posta adresin (opsiyonel ancak yanıt almak istiyorsan, paylaş lütfen)">

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpectAll</title>
+<meta name="description" content="La nostra missione è favorire la 'libertà e il benessere finanziario' incoraggiando il risparmio e migliorando l'educazione finanziaria.">
+<meta property="og:title" content="SpectAll"><meta property="og:description" content="La nostra missione è favorire la 'libertà e il benessere finanziario' incoraggiando il risparmio e migliorando l'educazione finanziaria.">
+<meta property="og:image" content="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/og.it.jpg?v=1795607175059">
+<link rel="canonical" href="https://spectall.com/it/"><link rel="alternate" hreflang="en" href="https://spectall.com/"><link rel="alternate" hreflang="tr" href="https://spectall.com/tr/"><link rel="alternate" hreflang="de" href="https://spectall.com/de/"><link rel="alternate" hreflang="fr" href="https://spectall.com/fr/"><link rel="alternate" hreflang="es" href="https://spectall.com/es/"><link rel="alternate" hreflang="pt" href="https://spectall.com/pt/"><link rel="alternate" hreflang="it" href="https://spectall.com/it/"><link rel="alternate" hreflang="x-default" href="https://spectall.com/">
+<link rel="icon" href="../assets/icon.png"><link rel="apple-touch-icon" href="../assets/icon.png">
+<style>
+:root{--navy:#0B2461;--navy2:#143A8C;--ink:#12213F;--muted:#5A6788;--light:#F3F5FA;--paper:#FFFFFF;--onnavy:#E8ECF7;--onnavy2:#AFC0E8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:inherit}img{max-width:100%;height:auto;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.top{position:sticky;top:0;z-index:5;background:var(--navy);color:var(--onnavy)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.top img{height:26px;width:auto}
+.lang a{color:var(--onnavy2);text-decoration:none;padding:6px 8px;font-size:14px;letter-spacing:.04em}
+.lang a.on{color:#fff;font-weight:600}
+.hero{background:linear-gradient(180deg,var(--navy) 0%,var(--navy2) 100%);color:var(--onnavy);padding:56px 0 48px}
+.hero .wrap{display:flex;align-items:center;gap:40px}
+.hero .txt{flex:1 1 55%}.hero .img{flex:1 1 45%;display:flex;justify-content:center}
+.hero .img img{max-height:560px;width:auto}
+.hero .logo{height:52px;width:auto;margin-bottom:28px}
+.hero h1{font-size:34px;line-height:1.25;font-weight:600;margin:0 0 18px}
+/* The mission in italics, on the WEB only (founder, 2026-09-22) - a styling
+   choice on the page, never a character in the row that the app also reads. */
+.hero .mission{color:var(--onnavy2);font-size:17px;font-style:italic;margin:0 0 28px}
+.badges{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.badges img{height:48px;width:auto}
+.badges .soon{color:var(--onnavy2);font-size:14px}
+.lead{background:var(--light);text-align:center;padding:40px 0;font-size:21px}
+.lead .wrap{max-width:820px}
+.sec{padding:56px 0}.sec:nth-child(odd){background:var(--paper)}.sec:nth-child(even){background:var(--light)}
+.sec .wrap{display:flex;align-items:center;gap:48px}
+.sec.flip .wrap{flex-direction:row-reverse}
+.sec .txt{flex:1 1 50%;font-size:26px;line-height:1.35;font-weight:500}
+.sec .img{flex:1 1 50%;display:flex;justify-content:center;gap:20px}
+.sec .img img{max-height:520px;width:auto}
+.sec.pair .txt{flex:1 1 40%}.sec.pair .img{flex:1 1 60%;padding:24px 0}
+.sec.pair .img img{max-height:480px}
+/* THE FAN. The overlap is a dial, measured on the page: -26% leaves 46% of the
+   back phone in view, -24% 51%, -20% 60%, -18% 67%. The founder's call is 60%
+   (2026-09-22). The front one sits lower and nearer. */
+.img.pair img:first-child,.sec.pair .img img:first-child{margin-right:-20%;transform:translateY(-6%) scale(.9);z-index:1;filter:drop-shadow(0 10px 24px rgba(11,36,97,.18))}
+.img.pair img:last-child,.sec.pair .img img:last-child{transform:translateY(6%);z-index:2;filter:drop-shadow(0 14px 30px rgba(11,36,97,.28))}
+.hero .img.pair{gap:0}.hero .img.pair img{max-height:520px}
+.sec.noimg .wrap{justify-content:center;text-align:center}.sec.noimg .txt{max-width:760px}
+.coda{text-align:center;font-size:26px;font-weight:500;padding:8px 0 56px}
+/* THE BAND IS A DISCLAIMER, NOT A CLAIM (founder, 2026-09-23): what SpectAll
+   is NOT should sit back, so it takes the page's own grey rather than the
+   hero's navy, a muted ink and a smaller size, with hairlines to keep it off
+   the light section above it. */
+.band{background:#E7ECF7;color:var(--muted);text-align:center;padding:44px 0;font-size:16px;line-height:1.6;border-top:1px solid #DCE3F1;border-bottom:1px solid #DCE3F1}
+.band .wrap{max-width:820px}
+.support{background:var(--light);padding:64px 0}
+.card{background:var(--paper);max-width:640px;margin:0 auto;border-radius:20px;padding:36px 28px;box-shadow:0 8px 30px rgba(11,36,97,.08)}
+.card h2{margin:0 0 20px;font-size:22px;font-weight:600;text-align:center;color:var(--navy)}
+.card input,.card textarea{width:100%;border:1px solid #D6DCEA;border-radius:12px;padding:14px 16px;font:inherit;color:var(--ink);background:#fff;margin-bottom:12px}
+.card textarea{min-height:140px;resize:vertical}
+.card button{width:100%;border:0;border-radius:12px;padding:14px;background:var(--navy);color:#fff;font:inherit;font-weight:600;letter-spacing:.04em;cursor:pointer}
+.card .ok,.card .err{text-align:center;padding:12px 0}.card .err{color:#B3261E}
+.foot{background:var(--navy);color:var(--onnavy2);padding:48px 0 48px;font-size:15px;line-height:1.7}
+.foot .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.foot img{height:30px;width:auto;margin-bottom:14px}
+.foot .mission{font-style:italic;color:var(--onnavy);max-width:620px;margin:0 0 18px;font-size:16px}
+.foot a{color:var(--onnavy)}
+.foot nav{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:center}
+/* The same ink as the separators in the About lines above (Market Data:
+   EODHD | CoinMarketCap | ForInvest) - they are plain text at full strength,
+   so a dimmed nav separator read as a different colour (founder, 2026-09-23). */
+.foot nav .sep{color:var(--onnavy2)}
+.foot .rights{margin-top:18px}
+.bar{position:sticky;bottom:16px;z-index:6;width:calc(100% - 32px);max-width:880px;box-sizing:border-box;margin:24px auto;background:#fff;border-radius:16px;box-shadow:0 10px 32px rgba(11,36,97,.22);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;transform:translateY(24px);opacity:0;visibility:hidden;transition:transform .3s ease,opacity .3s ease,visibility 0s linear .3s}
+.bar.show{transform:none;opacity:1;visibility:visible;transition:transform .3s ease,opacity .3s ease}
+.bar .cta{font-weight:700;font-size:20px;color:var(--navy);line-height:1.25;text-align:center}
+.bar .badges{flex-wrap:nowrap}.bar .badges img{height:48px}
+@media (min-width:821px){.bar .cta{white-space:nowrap}.bar .cta .nb{display:none}}
+@media (prefers-reduced-motion:reduce){.bar,.bar.show{transition:none}}
+@media (max-width:820px){
+  .hero .wrap,.sec .wrap,.sec.flip .wrap{flex-direction:column;text-align:center}
+  .hero{padding:40px 0 36px}.hero h1{font-size:28px}.hero .logo{margin:0 auto 24px}
+  .hero .badges{justify-content:center}.hero .img img,.sec .img img{max-height:440px}
+  .sec.pair .img{padding:16px 0}.sec.pair .img img{max-height:400px}
+  .hero .img.pair img{max-height:380px}
+  .sec .txt{font-size:22px}.coda{font-size:22px}.lead{font-size:19px}.band{font-size:15px}
+  .bar{padding:10px 14px;gap:12px;border-radius:14px}.bar .cta{font-size:14px;text-align:left}.bar .badges{gap:8px}.bar .badges img{height:36px}
+}
+/* SEVEN LANGUAGE LINKS ON A PHONE (25 Nov 2026): the separators go and the links close up, so the logo and
+   EN TR DE FR ES PT IT share a 360px header without wrapping. */
+@media (max-width:520px){.top img{height:22px}.lang span{display:none}.lang a{padding:6px 4px;font-size:13px;letter-spacing:0}}
+</style></head><body>
+<script>(function(){try{var L=["en","tr","de","fr","es","pt","it"],here='it',up='../';
+function go(l){location.replace((up+(l==='en'?'':l+'/'))||'./')}
+var c=localStorage.getItem('lang');if(L.indexOf(c)<0)c=null;if(c&&c!==here){go(c);return}
+if(!c&&here==='en'){var n=(navigator.language||'').toLowerCase().slice(0,2);if(n!=='en'&&L.indexOf(n)>=0){localStorage.setItem('lang',n);go(n)}}}catch(e){}})();</script>
+<header class="top"><div class="wrap"><a href="./"><img src="../assets/logo.png" alt="SpectAll"></a>
+<nav class="lang"><a href="../" class="" hreflang="en" onclick="try{localStorage.setItem('lang','en')}catch(e){}">EN</a><span>|</span><a href="../tr/" class="" hreflang="tr" onclick="try{localStorage.setItem('lang','tr')}catch(e){}">TR</a><span>|</span><a href="../de/" class="" hreflang="de" onclick="try{localStorage.setItem('lang','de')}catch(e){}">DE</a><span>|</span><a href="../fr/" class="" hreflang="fr" onclick="try{localStorage.setItem('lang','fr')}catch(e){}">FR</a><span>|</span><a href="../es/" class="" hreflang="es" onclick="try{localStorage.setItem('lang','es')}catch(e){}">ES</a><span>|</span><a href="../pt/" class="" hreflang="pt" onclick="try{localStorage.setItem('lang','pt')}catch(e){}">PT</a><span>|</span><a href="./" class="on" hreflang="it" onclick="try{localStorage.setItem('lang','it')}catch(e){}">IT</a></nav></div></header>
+<section class="hero"><div class="wrap"><div class="txt"><img class="logo" src="../assets/logo.png" alt="SpectAll">
+<h1>Valore, andamento e guadagno/perdita<br>di tutto ciò che possiedi<br>a portata di mano!</h1>
+<div class="badges"><a href="https://apps.apple.com/app/id6796391184" target="_blank" rel="noopener"><img src="../assets/badges/appstore-it.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=com.spectall.app" target="_blank" rel="noopener"><img src="../assets/badges/googleplay-it.png" alt="Google Play"></a></div></div>
+<div class="img pair"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/1b.it.webp?v=1795606998054" alt=""><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/1f.it.webp?v=1795607011238" alt=""></div></div></section>
+<div class="dock">
+<section class="sec pair"><div class="wrap"><div class="txt">prezzi, andamenti e<br>'Classifica'<br>di 180K+ asset globali</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/2b.it.webp?v=1795607022768" alt="" loading="lazy"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/2f.it.webp?v=1795607033889" alt="" loading="lazy"></div></div></section>
+<section class="sec flip pair"><div class="wrap"><div class="txt">un'unica schermata<br>135 valute<br>grafici facili da leggere</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/3b.it.webp?v=1795607044531" alt="" loading="lazy"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/3f.it.webp?v=1795607055142" alt="" loading="lazy"></div></div></section>
+<section class="sec pair"><div class="wrap"><div class="txt">fino a<br>50 portafogli<br>10 dispositivi associati<br>da condividere/gestire insieme</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/4b.it.webp?v=1795607068465" alt="" loading="lazy"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/4f.it.webp?v=1795607081853" alt="" loading="lazy"></div></div></section>
+<section class="sec flip"><div class="wrap"><div class="txt">notifiche sui<br>principali sviluppi finanziari</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/5b.it.webp?v=1795607101824" alt="" loading="lazy"></div></div></section>
+<section class="sec pair"><div class="wrap"><div class="txt">7 lingue<br>con un solo tocco</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/6b.it.webp?v=1795607115263" alt="" loading="lazy"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/6f.it.webp?v=1795607126606" alt="" loading="lazy"></div></div></section>
+<section class="sec flip pair"><div class="wrap"><div class="txt">completamente 'anonimo'<br>(nessuna condivisione di dati personali)<br>Face/Touch ID</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/7b.it.webp?v=1795607137923" alt="" loading="lazy"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/7f.it.webp?v=1795607148787" alt="" loading="lazy"></div></div></section>
+<section class="sec"><div class="wrap"><div class="txt">Prova gratis<br>per 30 giorni!</div><div class="img"><img src="https://oqftjahepualmvgqzdjb.supabase.co/storage/v1/object/public/site/8b.it.webp?v=1795607160784" alt="" loading="lazy"></div></div></section>
+<section class="band"><div class="wrap">Non c'è alcuna registrazione (account/iscrizione), login, password né raccolta di dati personali (nome, cognome, genere, età, ecc.); nessuna 'consulenza/consiglio di investimento'; né custodia, ordini/operazioni di acquisto/vendita o movimenti/operazioni di denaro relativi ad alcuna attività.</div></section>
+<div class="bar" aria-hidden="true"><div class="cta">Prova gratis <br class="nb">per 30 giorni!</div><div class="badges"><a href="https://apps.apple.com/app/id6796391184" target="_blank" rel="noopener"><img src="../assets/badges/appstore-it.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=com.spectall.app" target="_blank" rel="noopener"><img src="../assets/badges/googleplay-it.png" alt="Google Play"></a></div></div>
+</div>
+<section class="support"><div class="wrap"><form class="card" id="sf">
+<input name="email" type="email" placeholder="Il tuo indirizzo e-mail (facoltativo, ma inseriscilo se desideri una risposta)">
+<textarea name="message" required maxlength="2000" placeholder="Tutto ciò
+che vorresti chiedere/dire"></textarea>
+<button type="submit">INVIA</button></form></div></section>
+<footer class="foot"><div class="wrap"><img src="../assets/logo.png" alt="SpectAll">
+<div class="mission">La nostra missione è<br>favorire la 'libertà e il benessere finanziario'<br>incoraggiando il risparmio e<br>migliorando l'educazione finanziaria.</div>
+<div>Dati di mercato: <a href="https://eodhd.com" target="_blank" rel="noopener">EODHD</a> | <a href="https://coinmarketcap.com" target="_blank" rel="noopener">CoinMarketCap</a> | <a href="https://www.forinvest.com" target="_blank" rel="noopener">ForInvest</a></div>
+<div>Fondatore: <a href="https://www.linkedin.com/in/cenkangin" target="_blank" rel="noopener">Cenk ANGIN</a></div>
+<div>Contatti: <a href="mailto:support@spectall.com">support@spectall.com</a></div>
+<nav><a href="../privacy.it.html">Informativa sulla privacy</a><span class="sep">|</span><a href="../terms.it.html">Accordo utente</a><span class="sep">|</span><a href="../warning.it.html">Avvertenze legali</a></nav>
+<div class="rights"><p>Paramla Finansal Danışmanlık A.Ş.<br>Tutti i diritti riservati</p></div>
+</div></footer>
+<script>(function(){var bar=document.querySelector('.bar'),hero=document.querySelector('.hero .badges');if(!bar)return;
+function set(on){bar.classList.toggle('show',on);bar.setAttribute('aria-hidden',on?'false':'true')}
+if(!hero||!('IntersectionObserver' in window)){set(true);return}
+new IntersectionObserver(function(es){var e=es[0];set(!e.isIntersecting&&e.boundingClientRect.top<0)}).observe(hero)})();</script>
+<script>(function(){var f=document.getElementById('sf');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;
+var body={message:f.message.value.trim(),email:f.email.value.trim()||null,locale:'it',platform:'web',app_version:'web'};
+fetch('https://oqftjahepualmvgqzdjb.supabase.co/rest/v1/support_messages',{method:'POST',headers:{'apikey':'sb_publishable_LioKxsPKqIMEu7_-ioaTmA_90D0ndOi','Authorization':'Bearer sb_publishable_LioKxsPKqIMEu7_-ioaTmA_90D0ndOi','Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(body)})
+.then(function(r){if(!r.ok)throw 0;f.innerHTML='<div class="ok">Messaggio ricevuto, grazie;<br>ti risponderemo al più presto</div>'})
+.catch(function(){b.disabled=false;var d=f.querySelector('.err');if(!d){d=document.createElement('div');d.className='err';f.appendChild(d)}d.innerHTML='Invio non riuscito,<br>controlla la connessione e<br>riprova'})})})();</script>
+</body></html>
